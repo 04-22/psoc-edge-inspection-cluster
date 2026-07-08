@@ -1,0 +1,12 @@
+import os
+from building import *
+
+cwd = GetCurrentDir()
+src = Glob('*.c')
+src += Glob('drivers/lsm6ds3tr/*.c')   # 添加 lsm6ds3tr 驱动
+
+CPPPATH = [cwd, os.path.join(cwd, 'drivers/lsm6ds3tr')]   # 添加头文件路径
+
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')
